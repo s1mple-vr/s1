@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给女神的心情急救箱 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom right, #fff0f6, #ffe6f2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* 首页小作文卡片 */
+        .welcome-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 28px;
+            max-width: 420px;
+            box-shadow: 0 12px 32px rgba(255, 120, 180, 0.15);
+            text-align: center;
+            border: 1px solid rgba(255, 180, 210, 0.2);
+        }
+
+            .welcome-card h2 {
+                font-size: 22px;
+                color: #ff6b9d;
+                margin-bottom: 20px;
+            }
+
+            .welcome-card .essay {
+                font-size: 16px;
+                color: #444;
+                line-height: 1.7;
+                text-align: left;
+                margin-bottom: 25px;
+                white-space: pre-line;
+            }
+
+            .welcome-card button {
+                padding: 14px 24px;
+                border: none;
+                border-radius: 18px;
+                font-size: 16px;
+                font-weight: 600;
+                color: #fff;
+                background: #ff8fb1;
+                cursor: pointer;
+                transition: all 0.25s ease;
+            }
+
+                .welcome-card button:hover {
+                    background: #ff70a6;
+                    transform: translateY(-2px);
+                }
+
+        /* 情绪页面卡片 */
+        .card {
+            background: rgba(255, 255, 255, 0.88);
+            padding: 40px 32px;
+            border-radius: 28px;
+            box-shadow: 0 12px 32px rgba(255, 120, 180, 0.13);
+            text-align: center;
+            max-width: 420px;
+            width: 100%;
+            border: 1px solid rgba(255, 180, 210, 0.2);
+            display: none; /* 默认隐藏 */
+        }
+
+        h2 {
+            font-size: 23px;
+            color: #ff6b9d;
+            margin-bottom: 32px;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 15px 12px;
+            border: none;
+            border-radius: 18px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            background: #ff8fb1;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+            button:hover {
+                background: #ff70a6;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(255, 112, 166, 0.18);
+            }
+
+        .msg-box {
+            background: rgba(255, 245, 249, 0.7);
+            padding: 24px 20px;
+            border-radius: 20px;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 180, 210, 0.15);
+        }
+
+        #text {
+            font-size: 17px;
+            color: #555;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====================== 【这里是首页小作文】 ====================== -->
+    <div class="welcome-card" id="welcome">
+        <h2>💌 致我的女神 💌</h2>
+        <div class="essay" id="essay">
+         想不到这次的礼物又是这种没大有用的，但是我保证已经准备好正式的礼物了。今天是情人节，都说两情若是长久时，又岂在朝朝暮暮，但是我想要和你的长长久久，也想要和你的朝朝暮暮，我们要在一起过一万个情人节
+        </div>
+        <button onclick="goToMood()">点击进入 · 心情小站 💖</button>
+    </div>
+
+    <!-- ====================== 情绪选择页面 ====================== -->
+    <div class="card" id="moodPage">
+        <h2>💞 女神今天心情怎么样呀？💞</h2>
+        <div class="btn-group">
+            <button onclick="talk('happy')">开心 ✨</button>
+            <button onclick="talk('sad')">难过 😢</button>
+            <button onclick="talk('angry')">生气 😠</button>
+            <button onclick="talk('miss')">想你 🥺</button>
+            <button onclick="talk('tired')">好累 😔</button>
+            <button onclick="talk('wronged')">委屈 🥺</button>
+            <button onclick="talk('bored')">无聊 😛</button>
+        </div>
+        <div class="msg-box">
+            <p id="text">点一点上面的小按钮吧～</p>
+        </div>
+    </div>
+
+    <script>
+        // 切换到情绪页面
+        function goToMood() {
+            document.getElementById("welcome").style.display = "none";
+            document.getElementById("moodPage").style.display = "block";
+        }
+
+        const words = {
+            happy: [
+                "现在我命令你点开我的聊天框告诉我发生什么了 ",
+                "要一直开心啊",
+                "你开心我也开心",
+                "开心就发张照片来让我也开心一下呗",
+                "我有个好办法能让我也开心一下"
+            ],
+            sad: [
+                "是受委屈了吗，告诉我我帮你出气",
+                "有心情去找我聊聊吗，我一直都在陪着你呀",
+                "没关系，想哭就哭，我永远听你说",
+                "有我在，你不用一个人偷偷难过",
+                "相信我一切都会慢慢好起来的 "
+            ],
+            angry: [
+                "不气不气，气坏了我心疼",
+                "谁惹我女神生气了，应该不会是我吧",
+                "消消气嘛，如果我惹你生气了我替我在这道歉",
+                "生气就不好看了，我命令你马上变开心",
+                "我来哄你，别生气啦好不好"
+            ],
+            miss: [
+                "我也好想好想你呀，超级超级想 ",
+                "想我怎么不给我发信息啊，我也好想你",
+                "我也好想你",
+                "一想到你，我整个人都变温柔啦",
+                "虽然见不到，但我一直都在想你"
+            ],
+            tired: [
+                "累了就歇一歇，不用硬撑呀",
+                "你已经超级无敌厉害啦，好好放松一下吧～",
+                "我给你云按摩、云哄睡 💤",
+                "别太累啦，我会心疼的",
+                "躺下来歇会儿，我一直陪着你"
+            ],
+            wronged: [
+                "委屈就跟我说，我永远站你这边 ",
+                "给我发信息吧，受委屈了我来哄你",
+                "不许偷偷难过，我会一直保护你",
+                "有我在，谁都不能让你受委屈"
+            ],
+            bored: [
+                "无聊就找我聊天呀，我一直都在 ",
+                "无聊了还不来找我，罚你发张照片过来",
+                "无聊的时候可以拍拍照",
+                "我在呢，随时陪你聊天"
+            ]
+        };
+
+        function talk(type) {
+            let list = words[type];
+            let random = list[Math.floor(Math.random() * list.length)];
+            document.getElementById("text").innerText = random;
+        }
+    </script>
+</body>
+</html>
